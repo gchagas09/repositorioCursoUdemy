@@ -72,6 +72,49 @@
                 
             }
         }
+
+        public static function getList(){
+                $sql = new Sql();
+
+                return $sql ->select("SELECT * FROM tb_usuarios ORDER BY ds_login");
+
+        }
+
+        public static function search($login){
+                $sql = new Sql();
+
+                return $sql -> select("SELECT * FROM tb_usuarios WHERE ds_login LIKE :SEARCH ORDER BY ds_login", array(
+                        ':SEARCH'=>"%".$login."%"
+                ));
+        }
+
+        public function login($login, $senha){
+                $sql = new Sql();
+
+                $results = $sql-> select("SELECT * FROM tb_usuarios WHERE ds_login = :LOGIN AND ds_senha =:PASSWORD", array(
+                    ":LOGIN"=>$login,
+                    ":PASSWORD"=>$senha
+                ));
+    
+                if (count($results)>0){
+                    $row = $results[0];
+    
+                    $this ->setId_usuario($row['id_usuario']);
+                    $this ->setDs_login($row['ds_login']);
+                    $this ->setDs_senha($row['ds_senha']);
+                    $this ->setDt_cadastro(new DateTime($row['dt_cadastro']));
+                    
+                } else {
+                        throw new Exception("Login e/ou senha inválidos");
+                }
+        }
+
+        public function insert(){
+                $sql = new Sql();
+                $results = $sql -> select("CALL sp_usuarios_inser(:LOGIN, :PASSWORD)", array(
+                        ':LOGIN'
+                ));
+        }
    }
 
 
