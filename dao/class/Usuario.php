@@ -15,6 +15,11 @@
             ));
         }
 
+        public function __construct($login='', $password=''){
+                $this->setDs_login($login);
+                $this->setDs_senha($password);
+        }
+
         public function getId_usuario()
         {
                 return $this->id_usuario;
@@ -63,14 +68,8 @@
             ));
 
             if (count($results)>0){
-                $row = $results[0];
-
-                $this ->setId_usuario($row['id_usuario']);
-                $this ->setDs_login($row['ds_login']);
-                $this ->setDs_senha($row['ds_senha']);
-                $this ->setDt_cadastro(new DateTime($row['dt_cadastro']));
-                
-            }
+                $this->setData($results[0]); 
+                }
         }
 
         public static function getList(){
@@ -97,22 +96,41 @@
                 ));
     
                 if (count($results)>0){
-                    $row = $results[0];
-    
-                    $this ->setId_usuario($row['id_usuario']);
-                    $this ->setDs_login($row['ds_login']);
-                    $this ->setDs_senha($row['ds_senha']);
-                    $this ->setDt_cadastro(new DateTime($row['dt_cadastro']));
-                    
+                        $this->setData($results[0]);                    
                 } else {
                         throw new Exception("Login e/ou senha inválidos");
                 }
         }
 
+        public function setData($data){
+                $this ->setId_usuario($data['id_usuario']);
+                $this ->setDs_login($data['ds_login']);
+                $this ->setDs_senha($data['ds_senha']);
+                $this ->setDt_cadastro(new DateTime($data['dt_cadastro']));
+        }
+
         public function insert(){
+                
                 $sql = new Sql();
-                $results = $sql -> select("CALL sp_usuarios_inser(:LOGIN, :PASSWORD)", array(
-                        ':LOGIN'
+                
+                $results = $sql -> select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+                        ':LOGIN'=>$this->getDs_login(),
+                        ':PASSWORD'=>$this->getDs_senha()
+                ));                
+                if (count($results)>0){
+                        $this->setData($results[0]); 
+                        }
+        }
+
+        public function update($login, $password){
+                $this->setDs_login($login);
+                $this->setDs_senha($password);
+                $sql = new Sql();
+
+                $sql -> query("UPDATE tb_usuarios SET ds_login = :LOGIN, ds_senha = :PASSWORD WHERE id_usuarios = :ID", array(
+                        ':LOGIN'=> $this->getDs_login(),
+                        ':PASSWORD'=> $this->getDs_senha(),
+                        ':ID'=> $this->getId_usuario()
                 ));
         }
    }

@@ -15,10 +15,15 @@
 
 //Carrega um usuário usando login e senha
 
-$user = new Usuario();
+//$user = new Usuario();
 
-$user->login('gchagas09', '123456');
+//$user->login('gchagas09', '123456');
 
-echo $user;
+//echo $user;
+
+//Cria um usuário no banco, usando o método construtor e uma query específica
+//$aluno = new Usuario("aluno", "@lun0");
+//$aluno->insert();
+//echo $aluno;
 
 ?>
