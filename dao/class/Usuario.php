@@ -123,11 +123,13 @@
         }
 
         public function update($login, $password){
+                
                 $this->setDs_login($login);
                 $this->setDs_senha($password);
+                
                 $sql = new Sql();
 
-                $sql -> query("UPDATE tb_usuarios SET ds_login = :LOGIN, ds_senha = :PASSWORD WHERE id_usuarios = :ID", array(
+                $sql -> query("UPDATE tb_usuarios SET ds_login = :LOGIN, ds_senha = :PASSWORD WHERE id_usuario = :ID", array(
                         ':LOGIN'=> $this->getDs_login(),
                         ':PASSWORD'=> $this->getDs_senha(),
                         ':ID'=> $this->getId_usuario()

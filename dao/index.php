@@ -22,8 +22,16 @@
 //echo $user;
 
 //Cria um usuário no banco, usando o método construtor e uma query específica
-//$aluno = new Usuario("aluno", "@lun0");
+//$aluno = new Usuario("kaliadronoch", "khalmyr");
 //$aluno->insert();
 //echo $aluno;
+
+$user = new Usuario();
+$user->loadById(14);
+
+echo $user;
+$user->update("professor", "pr0f3ss0r");
+
+echo $user;
 
 ?>
