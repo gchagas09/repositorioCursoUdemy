@@ -26,11 +26,23 @@
 //$aluno->insert();
 //echo $aluno;
 
+
+//Altera os dados do usuário no BD
+/*
 $user = new Usuario();
 $user->loadById(14);
 
 echo $user;
+ 
 $user->update("professor", "pr0f3ss0r");
+
+echo $user;
+*/
+
+$user = new Usuario();
+$user -> loadById(12);
+
+$user->delete();
 
 echo $user;
 

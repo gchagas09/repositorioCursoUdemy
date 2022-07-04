@@ -146,6 +146,27 @@
                         ':ID'=> $this->getId_usuario()
                 ));
         }
+
+        public function delete(){
+                $sql = new Sql();
+
+                $nome = $this->getDs_login();
+                $cadastro_dt= $this->getDt_cadastro();
+
+                echo "Usuário $nome em $cadastro_dt excluído com sucesso";
+
+                $sql -> query("DELETE FROM tb_usuarios WHERE id_usuario = :ID", array(
+                        ':ID'=>$this->getId_usuario()
+                ));
+
+                $this->setId_usuario(NULL);
+                $this->setDs_login(NULL);
+                $this->setDs_senha(NULL);
+                $this->setDt_cadastro(new DateTime());
+
+                echo "Usuário $nome em $cadastro_dt excluído com sucesso";
+                
+        }
    }
 
 
