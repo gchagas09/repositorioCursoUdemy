@@ -147,6 +147,7 @@
                 ));
         }
 
+        //Método que exclui os dados do usuario no banco de Dados
         public function delete(){
                 $sql = new Sql();
 
