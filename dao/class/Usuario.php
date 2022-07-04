@@ -6,6 +6,7 @@
         private $ds_senha;
         private $dt_cadastro;
         
+        //Método mágico 'toString' que converte os dados do objeto para string, para que o mesmo possa ser exibido na tela
         public function __toString(){
             return json_encode(array(
                 "id_usuario"=> $this->getId_usuario(),
@@ -15,11 +16,13 @@
             ));
         }
 
+        //Método construtor do objeto, que recebe login e senha, e recebe os messmos vazios, tornando sua passagem opcional
         public function __construct($login='', $password=''){
                 $this->setDs_login($login);
                 $this->setDs_senha($password);
         }
 
+        //getters e setters do objeto
         public function getId_usuario()
         {
                 return $this->id_usuario;
@@ -60,6 +63,10 @@
                 $this->dt_cadastro = $dt_cadastro;
         }
 
+        /*
+        Método que busca no banco de dados os dados do usuário, cujo id foi passado como parâmetro do metodo
+        O método então utiliza um array associativo para completar os dados do objeto
+        */
         public function loadById($id){
             $sql = new Sql();
 
@@ -72,6 +79,7 @@
                 }
         }
 
+        // Método que busca todos os usuários do BD
         public static function getList(){
                 $sql = new Sql();
 
@@ -79,6 +87,7 @@
 
         }
 
+        // Método que busca um usuário no BD pelo seu login
         public static function search($login){
                 $sql = new Sql();
 
@@ -86,7 +95,7 @@
                         ':SEARCH'=>"%".$login."%"
                 ));
         }
-
+        // Método que valida o login e a senha do usuário no BD
         public function login($login, $senha){
                 $sql = new Sql();
 
@@ -101,7 +110,7 @@
                         throw new Exception("Login e/ou senha inválidos");
                 }
         }
-
+        // Método responsável por associar os dados do usuário no BD ao objeto 
         public function setData($data){
                 $this ->setId_usuario($data['id_usuario']);
                 $this ->setDs_login($data['ds_login']);
@@ -109,6 +118,7 @@
                 $this ->setDt_cadastro(new DateTime($data['dt_cadastro']));
         }
 
+        //Método que cria um novo usuário
         public function insert(){
                 
                 $sql = new Sql();
@@ -122,6 +132,7 @@
                         }
         }
 
+        // Método que atualiza um usuário no BD
         public function update($login, $password){
                 
                 $this->setDs_login($login);
