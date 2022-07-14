@@ -1,0 +1,17 @@
+{
+    "name": "gabriel/email",
+    "autoload": {
+        "psr-4": {
+            "Gabriel\\Email\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel Chagas",
+            "email": "gchagas090299@outlook.com.br"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "~5.2"
+    }
+}

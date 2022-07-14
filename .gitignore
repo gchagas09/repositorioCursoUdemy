@@ -6,4 +6,9 @@
 *.txt
 *.rar
 *.zip
+composer/*
+vendor/*
+PHPMailer/*
+boletophp/*
+email/vendor/*
 DIR/images/*
