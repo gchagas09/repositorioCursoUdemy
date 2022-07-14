@@ -1,0 +1,20 @@
+{
+    "name": "o_bolotta/projeto_hcodetreinamentos",
+    "description": "Projeto feito para o Curso de PHP 7 da HCode, através da Udemy",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "OBolotta\\ProjetoHcodetreinamentos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gabriel Chagas",
+            "email": "gchagas090299@outlook.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "monolog/monolog":"1.0.*"
+    }
+}

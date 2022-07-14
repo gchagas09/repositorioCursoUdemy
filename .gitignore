@@ -6,9 +6,8 @@
 *.txt
 *.rar
 *.zip
-composer/*
-vendor/*
+**/vendor/*
+**/composer.lock
 PHPMailer/*
 boletophp/*
-email/vendor/*
 DIR/images/*
